@@ -2,22 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('clone') {
+        stage('Clean Workspace') { // (Optional) Cleans old files before cloning
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/Damu9393/Terraform_CICD.git'
             }
         }
-        stage('init') {
+        stage('Terraform Init') {
             steps {
                 sh 'terraform init'
             }
         }
-         stage('plan') {
+        stage('Terraform Plan') {
             steps {
                 sh 'terraform plan'
             }
         }
-        stage('terraform apply') {
+        stage('Terraform Apply') {
             steps {
                 sh 'terraform apply -auto-approve'
             }
