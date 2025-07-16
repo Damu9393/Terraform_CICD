@@ -4,8 +4,8 @@ provider "aws" {
 
 resource "aws_instance" "dev" {
     ami = "ami-0150ccaf51ab55a51"
-    instance_type = "t2.nano"
+    instance_type = "t2.micro"
     tags = {
-      Name = "dev1"
+      Name = "jenkins-1"
     }
 }
